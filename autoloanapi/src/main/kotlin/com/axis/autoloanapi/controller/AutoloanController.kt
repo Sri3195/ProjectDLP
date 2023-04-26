@@ -6,6 +6,7 @@ import com.axis.autoloanapi.service.AutoloanService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -25,7 +26,7 @@ class AutoloanController(
         return autoloanService.saveCustomer(autoloan)
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     fun updateCustomer(@RequestParam id:String,@RequestBody autoloan: Autoloan):Mono<Autoloan>
     {
         return  autoloanService.updateCustomer(id,autoloan)
