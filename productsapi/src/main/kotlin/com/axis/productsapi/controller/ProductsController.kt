@@ -1,6 +1,7 @@
 package com.axis.productsapi.controller
 
 import com.axis.productsapi.model.Products
+import com.axis.productsapi.repository.ProductsRepository
 import com.axis.productsapi.service.ProductsService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -23,27 +24,23 @@ class ProductsController(
 
     @GetMapping("/fetch")
     fun getProducts():Flux<Products>{
-        return productsService.getAllProdcts()
+        return productsService.getProducts()
     }
 
     @PostMapping("/create")
     fun saveProduct(@RequestBody product:Products): Mono<Products>{
-        return productsService.saveProducts(product)
+        return productsService.saveProduct(product)
     }
 
     @PutMapping("/update")
-    fun updateProoduct(@RequestBody product: Products,@RequestParam id:String) :Mono<Products>?{
-        return productsService.updateProduct(product,id)
+    fun updateProoduct(@RequestParam id:String,@RequestBody product: Products,) :Mono<Products>?{
+        return productsService.updateProduct(id,product)
     }
 
-    @DeleteMapping("/delete")
-    fun deleteProduct(@RequestParam id:String):Mono<Void>{
-        return  productsService.deleteProduct(id)
 
-    }
 
     @GetMapping("/find")
     fun findProduct(@RequestParam id:String):Mono<Products>{
-        return productsService.findProduct(id)
+        return productsService.getProductsById(id)
     }
 }
