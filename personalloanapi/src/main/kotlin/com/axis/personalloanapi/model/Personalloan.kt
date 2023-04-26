@@ -8,18 +8,18 @@ data class Personalloan(
     @Id
     val id:String?,
     val phNo:String?=null,
-    val empType:String,
-    val income:String,
-    val bankAccount:String,
-    val company:String,
-    val residenceCity:String,
-    val residenceType: String,
-    val loanAmount:String,
-    val fullName:String,
-    val email:String,
-    val gender:String,
-    val dob:String,
-    val pinCode:String,
-    val panCard:String
+    val empType:String?=null,
+    val income:String?=null,
+    val bankAccount:String?=null,
+    val company:String?=null,
+    val residenceCity:String?=null,
+    val residenceType: String?=null,
+    val loanAmount:String?=null,
+    val fullName:String?=null,
+    val email:String?=null,
+    val gender:String?=null,
+    val dob:String?=null,
+    val pinCode:String?=null,
+    val panCard:String?=null
 
 )
