@@ -14,7 +14,7 @@ function PersonalLoanFour() {
 
     const handleChange = (e) => {
         setResidenceCity(e.target.value)
-        localStorage.setItem('residenceCity',residenceCity)
+        
     }
     const url=new URL('http://localhost:8002/v1/update')
     const params={
@@ -36,6 +36,7 @@ function PersonalLoanFour() {
             window.alert("Please select your residential city !")
         }
         else {
+            localStorage.setItem('residenceCity',residenceCity)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

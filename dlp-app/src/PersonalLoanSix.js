@@ -14,7 +14,7 @@ function PersonalLoanSix() {
 
     const handleChange = (e) => {
         setLoanamount(e.target.value)
-        localStorage.setItem('loanAmount',loanAmount)
+        
     }
     const url=new URL('http://localhost:8002/v1/update')
     const params={
@@ -37,6 +37,7 @@ function PersonalLoanSix() {
             window.alert("Please select loan Amount !")
         }
         else {
+            localStorage.setItem('loanAmount',loanAmount)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

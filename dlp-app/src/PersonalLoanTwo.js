@@ -14,7 +14,7 @@ function PersonalLoanTwo() {
 
     const handleChange = (e) => {
         setBankaccount(e.target.value)
-        localStorage.setItem('bankAccount',bankAccount)
+        
     }
 
     const url=new URL('http://localhost:8002/v1/update')
@@ -34,7 +34,7 @@ function PersonalLoanTwo() {
             window.alert("Please select your primary bank account !")
         }
         else {
-            //localStorage.setItem('bankAccount',bankAccount)
+            localStorage.setItem('bankAccount',bankAccount)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

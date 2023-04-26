@@ -14,7 +14,7 @@ function PersonalLoanThree(){
     //localStorage.setItem('company',company)
     const handleChange = (e) => {
         setCompany(e.target.value)
-        localStorage.setItem('company',company)
+        
     }
     const url=new URL('http://localhost:8002/v1/update')
     const params={

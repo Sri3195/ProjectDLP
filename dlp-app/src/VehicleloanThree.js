@@ -10,18 +10,40 @@ import ProgressBar from "./ProgressBar";
 function VehicleloanThree() {
     const navigate = useNavigate()
 
-    const [brandtype, setBrandtype] = useState('')
+    const [brandType, setBrandtype] = useState('')
 
     const handleChange = (e) => {
         setBrandtype(e.target.value)
     }
+    const params={
+        id: localStorage.getItem('phNo')
+      }
+    const url1=new URL('http://localhost:8003/v1/update')
+    url1.search = new URLSearchParams(params).toString();
+    const data={
+        id: localStorage.getItem('phNo'),
+        phNo: localStorage.getItem('phNo'),
+        vehicleType: localStorage.getItem('vehicleType'),
+        residingCity: localStorage.getItem('residingCity'),
+        brandType: brandType
+      }
 
     const handleClick = () => {
-        if (brandtype === '') {
+        if (brandType === '') {
             window.alert("Please select the brand type !")
         }
         else {
-            //localStorage.setItem('residenceCity',residenceCity)
+            localStorage.setItem('brandType',brandType)
+            fetch(url1, {
+                method: "PUT",
+                mode: "cors",
+                body: JSON.stringify(data),
+                headers: {
+                    "content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                }
+            }).then(response => response.json())
+            .then(json=>console.log(json))
             navigate("/vehicle-loan-step-four")
         }
 

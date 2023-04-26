@@ -14,7 +14,7 @@ function PersonalLoanOne() {
 
     const handleChange = (e) => {
         setIncome(e.target.value)
-        localStorage.setItem('income',income)
+        
     }
     const url=new URL('http://localhost:8002/v1/update')
     const params={
@@ -33,7 +33,7 @@ function PersonalLoanOne() {
             window.alert("Please select your yearly income !")
         }
         else {
-            //localStorage.setItem('income',income)
+            localStorage.setItem('income',income)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

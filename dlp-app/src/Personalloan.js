@@ -15,7 +15,7 @@ function Personalloan() {
     
     const handleChange=(e)=>{
         setEmployeeType(e.target.value)
-        localStorage.setItem('empType',employeetype)
+        
     }
     const url=new URL('http://localhost:8002/v1/update')
     const params={
@@ -33,6 +33,7 @@ function Personalloan() {
             window.alert("Please select employment type !")
         }
         else{
+            localStorage.setItem('empType',employeetype)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

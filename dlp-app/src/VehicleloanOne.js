@@ -11,21 +11,29 @@ import ProgressBar from "./ProgressBar";
 function VehicleloanOne() {
     const navigate=useNavigate()
 
-    const [vehicletype,setVehicleType]=useState('')
+    const [vehicleType,setVehicleType]=useState('')
     
     const handleChange=(e)=>{
         setVehicleType(e.target.value)
     }
+      const params={
+        id: localStorage.getItem('phNo')
+      }
+    const url1=new URL('http://localhost:8003/v1/update')
+    url1.search = new URLSearchParams(params).toString();
     const data={
-        vehicletype: vehicletype
-    }
+        id: localStorage.getItem('phNo'),
+        phNo: localStorage.getItem('phNo'),
+        vehicleType: vehicleType
+      }
 
     const handleClick=()=>{
-        if(vehicletype===''){
+        if(vehicleType===''){
             window.alert("Please select Vehicle type ! ")
         }
         else{
-            fetch('http://localhost:8003/v1/update', {
+            localStorage.setItem('vehicleType',vehicleType)
+            fetch(url1, {
                 method: "PUT",
                 mode: "cors",
                 body: JSON.stringify(data),

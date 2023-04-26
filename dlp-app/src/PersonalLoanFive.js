@@ -14,7 +14,7 @@ function PersonalLoanFive() {
 
     const handleChange = (e) => {
         setResidencetype(e.target.value)
-        localStorage.setItem("residenceType",residenceType)
+        
     }
 
     const url=new URL('http://localhost:8002/v1/update')
@@ -37,6 +37,7 @@ function PersonalLoanFive() {
             window.alert("Please select your residential city !")
         }
         else {
+            localStorage.setItem("residenceType",residenceType)
             fetch(url, {
                 method: "PUT",
                 mode: "cors",

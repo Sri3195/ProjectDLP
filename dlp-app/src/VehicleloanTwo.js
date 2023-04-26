@@ -15,13 +15,34 @@ function VehicleloanTwo() {
     const handleChange = (e) => {
         setResidenceCity(e.target.value)
     }
+    const params={
+        id: localStorage.getItem('phNo')
+      }
+    const url1=new URL('http://localhost:8003/v1/update')
+    url1.search = new URLSearchParams(params).toString();
+    const data={
+        id: localStorage.getItem('phNo'),
+        phNo: localStorage.getItem('phNo'),
+        vehicleType: localStorage.getItem('vehicleType'),
+        residingCity: residenceCity
+      }
 
     const handleClick = () => {
         if (residenceCity === '') {
             window.alert("Please select your residential city !")
         }
         else {
-            //localStorage.setItem('residenceCity',residenceCity)
+            localStorage.setItem('residingCity',residenceCity)
+            fetch(url1, {
+                method: "PUT",
+                mode: "cors",
+                body: JSON.stringify(data),
+                headers: {
+                    "content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                }
+            }).then(response => response.json())
+            .then(json=>console.log(json))
             navigate("/vehicle-loan-step-three")
         }
 

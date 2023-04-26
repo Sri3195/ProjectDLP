@@ -15,13 +15,38 @@ function VehicleloanFive() {
     const handleChange = (e) => {
         setLoanamount(e.target.value)
     }
+    const params={
+        id: localStorage.getItem('phNo')
+      }
+    const url1=new URL('http://localhost:8003/v1/update')
+    url1.search = new URLSearchParams(params).toString();
+    const data={
+        id: localStorage.getItem('phNo'),
+        phNo: localStorage.getItem('phNo'),
+        vehicleType: localStorage.getItem('vehicleType'),
+        residingCity: localStorage.getItem('residingCity'),
+        brandType: localStorage.getItem('brandType'),
+        timePeriod: localStorage.getItem('timePeriod'),
+        loanAmount: loanAmount
+        
+      }
 
     const handleClick = () => {
         if (loanAmount === '') {
             window.alert("Please select you the loan amount !")
         }
         else {
-            //localStorage.setItem('residenceCity',residenceCity)
+            localStorage.setItem('loanAmount',loanAmount)
+            fetch(url1, {
+                method: "PUT",
+                mode: "cors",
+                body: JSON.stringify(data),
+                headers: {
+                    "content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                }
+            }).then(response => response.json())
+            .then(json=>console.log(json))
             navigate("/vehicle-loan-step-six")
         }
 
