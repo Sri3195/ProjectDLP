@@ -2,6 +2,7 @@ package com.axis.autoloanapi.controller
 
 import com.axis.autoloanapi.model.Autoloan
 import com.axis.autoloanapi.repository.AutoloanRepository
+import com.axis.autoloanapi.service.AutoloanService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -15,22 +16,23 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/v1")
 class AutoloanController(
-        @Autowired
-        val autoloanRepository: AutoloanRepository
+    @Autowired
+    val autoloanService: AutoloanService
 ) {
-    @PostMapping("/save")
-    fun saveCustomer(@RequestBody autoloan: Autoloan):Mono<Autoloan>{
-        return autoloanRepository.save(autoloan)
 
+    @PostMapping("/create")
+    fun saveCustomer(@RequestBody autoloan: Autoloan):Mono<Autoloan>{
+        return autoloanService.saveCustomer(autoloan)
     }
-    @GetMapping("/fetch")
-    fun getCustomers():Flux<Autoloan>{
-        return autoloanRepository.findAll()
+
+    @PostMapping("/update")
+    fun updateCustomer(@RequestParam id:String,@RequestBody autoloan: Autoloan):Mono<Autoloan>
+    {
+        return  autoloanService.updateCustomer(id,autoloan)
     }
 
     @GetMapping("/find")
-    fun getCustomerById(@RequestParam id:String):Mono<Autoloan>{
-        return autoloanRepository.findById(id)
+    fun getCustomerById(@RequestParam id: String):Mono<Autoloan>{
+        return autoloanService.getCustomerById(id)
     }
-
 }

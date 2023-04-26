@@ -7,13 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Autoloan(
     @Id
     val id:String?,
-    val phNo:String,
-    val vehicleType:String,
-    val residingCity:String,
-    val brandType:String,
-    val timePeriod:String,
-    val loanAmount:String,
-    val loanPeriod:String,
-    val empType:String,
+    val phNo:String?=null,
+    val vehicleType:String?=null,
+    val residingCity:String?=null,
+    val brandType:String?=null,
+    val timePeriod:String?=null,
+    val loanAmount:String?=null,
+    val loanPeriod:String?=null,
+    val empType:String?=null,
 
 )

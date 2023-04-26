@@ -11,7 +11,6 @@ import org.springframework.test.web.reactive.server.WebTestClient
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AutoloanControllerTest {
-
     @Autowired
     lateinit var webTestClient: WebTestClient
 
@@ -20,32 +19,37 @@ class AutoloanControllerTest {
 
     @Test
     fun saveCustomerTest(){
-        val customer=(Autoloan("1","9618434122","New","Hyderabad","Hyundai","1 week","3 lakhs","3 years","salaried"))
-        autoloanRepository.save(customer).block()
+        val autoloanCustomer=(Autoloan("9618434122","9618434122","New","Hyd","Hyundai","1 week","3 lakshs","3 years", "salaried"))
+        autoloanRepository.save(autoloanCustomer).block()
 
-        val savedCustomer=webTestClient.post()
-            .uri("/v1/save")
+        val savedCustomer= webTestClient.post()
+            .uri("/v1/create")
             .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(autoloanCustomer)
             .exchange()
             .expectStatus().isOk
             .expectBody(Autoloan::class.java)
             .returnResult().responseBody
 
-        Assertions.assertThat(savedCustomer).isEqualTo(customer)
+        Assertions.assertThat(savedCustomer).isEqualTo(autoloanCustomer)
 
- }
+    }
+
     @Test
-    fun getCustomerById(){
-        val customer=Autoloan("1","9618434122","New","Hyderabad","Hyundai","1 week","3 lakhs","3 years","salaried")
+    fun updateCustomerTest(){
+        val autoloanCustomer=(Autoloan("9618434122","9618434122","Used One","Hyd","Hyundai","1 week","3 lakshs","3 years", "salaried"))
+        autoloanRepository.save(autoloanCustomer).block()
 
-        val returedCustomer=webTestClient.get()
-            .uri("/v1/find?id=1")
+        val savedCustomer= webTestClient.post()
+            .uri("/v1/update?id=9618434122")
+            .contentType(MediaType.APPLICATION_JSON)
+            .bodyValue(autoloanCustomer)
             .exchange()
             .expectStatus().isOk
             .expectBody(Autoloan::class.java)
             .returnResult().responseBody
 
-        Assertions.assertThat(returedCustomer).isEqualTo(customer)
+        Assertions.assertThat(savedCustomer).isEqualTo(autoloanCustomer)
 
     }
 }
