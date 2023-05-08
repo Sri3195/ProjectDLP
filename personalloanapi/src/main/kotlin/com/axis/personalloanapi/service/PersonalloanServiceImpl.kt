@@ -7,21 +7,22 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 
 @Service
-class PersonalloanService(
+class PersonalloanServiceImpl
+    (
     @Autowired
     var personalloanRepository: PersonalloanRepository
-) {
+) : PersonalloanService{
 
-    fun saveCustomer(personalloan: Personalloan):Mono<Personalloan>{
+    override fun saveCustomer(personalloan: Personalloan):Mono<Personalloan>{
         return personalloanRepository.save(personalloan)
     }
 
-    fun updateCustomer(id:String,personalloan: Personalloan):Mono<Personalloan>{
+    override fun updateCustomer(id:String,personalloan: Personalloan):Mono<Personalloan>{
         return personalloanRepository.existsById(id).filter { it==true }.flatMap {
             personalloanRepository.save(personalloan)
         }
     }
-    fun getCusomerById(id:String):Mono<Personalloan>{
+    override fun getCustomerById(id:String):Mono<Personalloan>{
         return personalloanRepository.findById(id)
     }
 }

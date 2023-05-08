@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Personalloan(
     @Id
     val id:String?,
-    val phNo:String?=null,
+    val phNo:Long?=null,
     val empType:String?=null,
     val income:String?=null,
     val bankAccount:String?=null,
@@ -19,7 +19,7 @@ data class Personalloan(
     val email:String?=null,
     val gender:String?=null,
     val dob:String?=null,
-    val pinCode:String?=null,
+    val pinCode:Int?=null,
     val panCard:String?=null
 
 )

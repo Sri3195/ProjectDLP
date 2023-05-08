@@ -1,8 +1,7 @@
 package com.axis.personalloanapi.Controller
 
 import com.axis.personalloanapi.model.Personalloan
-import com.axis.personalloanapi.respository.PersonalloanRepository
-import com.axis.personalloanapi.service.PersonalloanService
+import com.axis.personalloanapi.service.PersonalloanServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
@@ -20,7 +18,7 @@ import reactor.core.publisher.Mono
 class PersonalloanController(
 
     @Autowired
-    val personalloanService: PersonalloanService
+    val personalloanService: PersonalloanServiceImpl
 )
 {
 
@@ -37,7 +35,7 @@ class PersonalloanController(
     }
     @GetMapping("/find")
     fun getCustomerById(@RequestParam id:String):Mono<Personalloan>{
-        return personalloanService.getCusomerById(id)
+        return personalloanService.getCustomerById(id)
 
     }
 

@@ -1,3 +1,7 @@
 package com.axis.personalloanapi.kafka
 
-data class Email()
+data class Email(
+    val to:String,
+    val subject:String,
+    val body:String
+)
