@@ -2,10 +2,10 @@ import { Padding } from "@mui/icons-material";
 import { Typography ,Box,TextField, Button,Card} from "@mui/material";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import ploan from './personal-loan2.jpg'
-import ProgressBar from "./ProgressBar";
+import ploan from "../../utils/personal-loan.jpg"
+import ProgressBar from "../../ProgressBar";
 
-function PersonalloanFinal(){
+function LoanSuccess(){
     const navigate=useNavigate('')
     const handleClick=()=>{
         navigate("/")
@@ -17,7 +17,7 @@ function PersonalloanFinal(){
         <Box sx={{ mt: 10 }}>
         <Card sx={{ml: '100px',borderRadius:'10px', width: '600px', height: '530px'}}>
             <center><Typography variant="h4" sx={{mt:10, color:'#3498DB'}}>Thank You !</Typography></center>
-            <center><Typography variant="h6" sx={{mt:7, color:'#3498DB'}}>Appplication for Personal Loan Submitted. Please Wait for Validation !</Typography></center>
+            <center><Typography variant="h6" sx={{mt:7, color:'#3498DB'}}>Youe Appplication for Personal Loan Submitted</Typography></center>
             <center><Button color="primary" variant="contained"sx={{mt: 10,width:'400px',height:'50px'}}  onClick={handleClick} id="proceed-button">Back to Home Page</Button></center>
         </Card>
         </Box>
@@ -25,4 +25,4 @@ function PersonalloanFinal(){
         </>
     )
 }
-export default PersonalloanFinal;
+export default LoanSuccess;

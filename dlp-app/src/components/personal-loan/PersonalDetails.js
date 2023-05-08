@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "./personalloan.css";
-import ploan from './personal-loan2.jpg';
+import "../../loans.css";
+import ploan from "../../utils/personal-loan.jpg"
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import TextField from '@mui/material/TextField';
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../../ProgressBar";
 
-function PersonalLoanSeven() {
+function PersonalDetails() {
     const navigate = useNavigate()
 
     const [fullName,setFullName]=useState('')
@@ -54,7 +54,7 @@ function PersonalLoanSeven() {
          else if(onlyNumbers(pinCode)!=true){
             window.alert("Pin Code should contain only digits!")
          }
-         else if(pinCode.length !=6)
+         else if(pinCode.toString().length !=6)
          {
             window.alert("Pin Code should be length 6 !")
          }
@@ -68,6 +68,9 @@ function PersonalLoanSeven() {
          else if(validEmail(email)!=true){
             window.alert("Please enter valid Email Address !")
          }
+         else if(validatePan(panCard)!=true){
+            window.alert("Please enter valid Pan Card Number !")
+         }
         else {
             fetch(url, {
                 method: "PUT",
@@ -79,7 +82,7 @@ function PersonalLoanSeven() {
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
-            navigate("/personal-loan-step-final")
+            navigate("/personal-loan-loan-success")
         }
 
     }
@@ -88,17 +91,20 @@ function PersonalLoanSeven() {
       }
     
       const onlyNumbers=(str1)=> {
-        return /^[0-9]*$/.test(str1)
+        return /^[0-9]*$/.test(str1.toString())
       }
       const onlyNumbersAndNumbers=(str2)=> {
         return /^[A-Za-z0-9]*$/.test(str2)
       }
 
     const handleIconClick = () => {
-        navigate("/personal-loan-step-six")
+        navigate("/personal-loan-loan-amount")
     }
     const validEmail=(str3)=>{
         return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(str3)
+    }
+    const validatePan=(str4)=>{
+        return /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(str4)
     }
     return (
         <>
@@ -158,4 +164,4 @@ function PersonalLoanSeven() {
         </>
     )
 }
-export default PersonalLoanSeven;
+export default PersonalDetails;

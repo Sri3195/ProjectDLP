@@ -3,25 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import Products from './Products';
-import Personalloan from './Personalloan';
-import PersonalLoanOne from './PersonalLoanOne';
-import PersonalLoanTwo from './PersonalLoanTwo';
-import PersonalLoanThree from './PersonalLoanThree';
-import PersonalLoanFour from './PersonalLoanFour';
-import PersonalLoanFive from './PersonalLoanFive';
-import PersonalLoanSix from './PersonalLoanSix';
-import PersonalLoanSeven from './PersonalLoanSeven';
-import PersonalloanFinal from './PersonalloanFinal';
-import VehicleloanOne from './VehicleloanOne';
-import VehicleloanTwo from './VehicleloanTwo';
-import VehicleloanThree from './VehicleloanThree';
-import VehicleloanFour from './VehicleloanFour';
-import VehicleloanFive from './VehicleloanFive';
-import VehicleloanSix from './VehicleloanSix';
-import VehicleloanSeven from './VehicleloanSeven';
-import VehicleloanFinal from './VehicleloanFinal';
+import { BrowserRouter,Routes,Route, Router } from 'react-router-dom';
+import PhoneNumber from './PhoneNumber';
+
+import PersonalloanBankAccount from './components/personal-loan/BankAccount';
+import  PersonalloanCompany from './components/personal-loan/Company';
+import PersonalloanEmploymentType from './components/personal-loan/EmploymentType';
+import PersonalloanIncome from './components/personal-loan/Income';
+import PersonalloanLoanAmount from './components/personal-loan/LoanAmount';
+import PersonalloanLoanSuccess from './components/personal-loan/LoanSuccess';
+import PersonalloanResidenceCity from './components/personal-loan/ResidenceCity';
+import PersonalloanResidenceType from './components/personal-loan/ResidenceType';
+import VehicleloanBrandType from './components/auto-loan/BrandType';
+import VehicleloanEmploymentType from './components/auto-loan/EmploymentType';
+import VehicleloanLoanAmount from './components/auto-loan/LoanAmount';
+import VehicleloanLoanPeriod from './components/auto-loan/LoanPeriod';
+import VehicleloanLoanSuccess from './components/auto-loan/LoanSuccess';
+import VehicleloanResidingCity from './components/auto-loan/ResidingCity';
+import VehicleloanTimePeriod from './components/auto-loan/TimePeriod';
+import VehicleloanVehicleType from './components/auto-loan/VehicleType';
+import PersonalloanPersonalDetails from './components/personal-loan/PersonalDetails';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,24 +31,24 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path="" element={<App/>}/>
-      <Route path="/products" element={<Products/>}/>
-      <Route path="/personal-loan" element={<Personalloan/>}/>
-      <Route path="/personal-loan-step-one" element={<PersonalLoanOne/>}/>
-      <Route path="/personal-loan-step-two" element={<PersonalLoanTwo/>}/>
-      <Route path="/personal-loan-step-three" element={<PersonalLoanThree/>}/>
-      <Route path="/personal-loan-step-four" element={<PersonalLoanFour/>}/>
-      <Route path="/personal-loan-step-five" element={<PersonalLoanFive/>}/>
-      <Route path="/personal-loan-step-six" element={<PersonalLoanSix/>}/>
-      <Route path="/personal-loan-step-seven" element={<PersonalLoanSeven/>}/>
-      <Route path="/personal-loan-step-final" element={<PersonalloanFinal/>}/>
-      <Route path="/vehicle-loan-step-one" element={<VehicleloanOne/>}/>
-      <Route path="/vehicle-loan-step-two" element={<VehicleloanTwo/>}/>
-      <Route path="/vehicle-loan-step-three" element={<VehicleloanThree/>}/>
-      <Route path="/vehicle-loan-step-four" element={<VehicleloanFour/>}/>
-      <Route path="/vehicle-loan-step-five" element={<VehicleloanFive/>}/>
-      <Route path="/vehicle-loan-step-six" element={<VehicleloanSix/>}/>
-      <Route path="/vehicle-loan-step-seven" element={<VehicleloanSeven/>}/>
-      <Route path="/vehicle-loan-step-final" element={<VehicleloanFinal/>}/>
+      <Route path="/phone-number" element={<PhoneNumber/>}/>
+      <Route path="/personal-loan-emp-type" element={<PersonalloanEmploymentType/>}/>
+      <Route path="/personal-loan-bank-account" element={<PersonalloanBankAccount/>}/>
+      <Route path="/personal-loan-company" element={<PersonalloanCompany/>}/>
+      <Route path="/personal-loan-income" element={<PersonalloanIncome/>}/>
+      <Route path="/personal-loan-loan-amount" element={<PersonalloanLoanAmount/>}/>
+      <Route path="/personal-loan-loan-success" element={<PersonalloanLoanSuccess/>}/>
+      <Route path="/personal-loan-personal-details" element={<PersonalloanPersonalDetails/>}/>
+      <Route path="/personal-loan-residence-city" element={<PersonalloanResidenceCity/>}/>
+      <Route path="/personal-loan-residence-type" element={<PersonalloanResidenceType/>}/>
+      <Route path="/vehicle-loan-brand-type" element={<VehicleloanBrandType/>}/>
+      <Route path="/vehicle-loan-emp-type" element={<VehicleloanEmploymentType/>}/>
+      <Route path="/vehicle-loan-loan-amount" element={<VehicleloanLoanAmount/>}/>
+      <Route path="/vehicle-loan-loan-success" element={<VehicleloanLoanSuccess/>}/>
+      <Route path="/vehicle-loan-residing-city" element={<VehicleloanResidingCity/>}/>
+      <Route path="/vehicle-loan-time-period" element={<VehicleloanTimePeriod/>}/>
+      <Route path="/vehicle-loan-vehicle-type" element={<VehicleloanVehicleType/>}/>
+      <Route path="/vehicle-loan-loan-period" element={<VehicleloanLoanPeriod/>}/>
      </Routes> 
     </BrowserRouter>
   </React.StrictMode>

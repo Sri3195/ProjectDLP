@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "./personalloan.css";
-import ploan from './personal-loan2.jpg';
+import "../../loans.css";
+import ploan from "../../utils/personal-loan.jpg"
+
 import  ArrowBack from "@mui/icons-material/ArrowBack";
-import ProgressBar from "./ProgressBar";
-function PersonalLoanTwo() {
+import ProgressBar from "../../ProgressBar";
+function BankAccount() {
     const navigate = useNavigate()
 
     const [bankAccount, setBankaccount] = useState('')
@@ -45,12 +46,12 @@ function PersonalLoanTwo() {
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
-            navigate("/personal-loan-step-three")
+            navigate("/personal-loan-company")
         }
 
     }
     const handleIconClick=()=>{
-        navigate("/personal-loan-step-one")
+        navigate("/personal-loan-income")
     }
     return (
         <>
@@ -99,4 +100,4 @@ function PersonalLoanTwo() {
         </>
     )
 }
-export default PersonalLoanTwo;
+export default BankAccount;

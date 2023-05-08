@@ -3,42 +3,38 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "./personalloan.css";
-import ploan from './personal-loan2.jpg';
+import "../../loans.css";
+import vloan from "../../utils/vehicle-loan.jpg"
 import  ArrowBack from "@mui/icons-material/ArrowBack";
-import ProgressBar from "./ProgressBar";
-function PersonalLoanFive() {
+import ProgressBar from "../../ProgressBar";
+function BrandType() {
     const navigate = useNavigate()
 
-    const [residenceType, setResidencetype] = useState('')
+    const [brandType, setBrandtype] = useState('')
 
     const handleChange = (e) => {
-        setResidencetype(e.target.value)
-        
+        setBrandtype(e.target.value)
     }
-
-    const url=new URL('http://localhost:8002/v1/update')
     const params={
         id: localStorage.getItem('phNo')
       }
-      url.search = new URLSearchParams(params).toString();
+    const url1=new URL('http://localhost:8003/v1/update')
+    url1.search = new URLSearchParams(params).toString();
     const data={
         id: localStorage.getItem('phNo'),
         phNo: localStorage.getItem('phNo'),
-        empType: localStorage.getItem('empType'),
-        income: localStorage.getItem('income'),
-        bankAccount:localStorage.getItem('bankAccount'),
-        company: localStorage.getItem('company'),
-        residenceCity: localStorage.getItem('residenceCity'),
-        residenceType: residenceType
-    }
+        vehicleType: localStorage.getItem('vehicleType'),
+        residingCity: localStorage.getItem('residingCity'),
+        brandType: brandType
+      }
+
     const handleClick = () => {
-        if (residenceType === '') {
-            window.alert("Please select your residential city !")
+        if (brandType === '') {
+            window.alert("Please select the brand type !")
         }
         else {
-            localStorage.setItem("residenceType",residenceType)
-            fetch(url, {
+            localStorage.setItem('brandType',brandType)
+            fetch(url1, {
                 method: "PUT",
                 mode: "cors",
                 body: JSON.stringify(data),
@@ -48,45 +44,45 @@ function PersonalLoanFive() {
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
-            navigate("/personal-loan-step-six")
+            navigate("/vehicle-loan-time-period")
         }
 
     }
     const handleIconClick=()=>{
-        navigate("/personal-loan-step-four")
+        navigate("/vehicle-loan-residing-city")
     }
     return (
         <>
             <div style={{ display: 'flex' }}>
-                <img src={ploan} alt="no-image found" style={{ height: '100vh', width: '45%' }} />
-                <Box sx={{ mt: 3}}>
-                <ProgressBar progress={62.5}/>
+                <img src={vloan} alt="no-image found" style={{ height: '100vh', width: '45%' }} />
+                <Box sx={{ mt: 5}}>
+                <ProgressBar progress={30}/>
                     <Card sx={{ ml: '85px', width: '600px', height: '600px', borderRadius: '10px' }}>
                     {/*<h3 style={{marginLeft:'10px',marginBottom:'50px'}}>Start your loan application by selecting employment type</h3>*/}
                     <IconButton>
                       <ArrowBack fontSize='large' color='primary'sx={{ml:6,mt:1}} onClick={handleIconClick}/>
                     </IconButton>
                     <FormControl>
-                        <FormLabel sx={{fontSize:'23px',mb:2, color:'#3498DB',ml:2,mr:10}} ><center>Select your residential type </center></FormLabel>
+                        <FormLabel sx={{fontSize:'23px',mb:2, color:'#3498DB',ml:2,mr:10}} ><center>Which vehicle are you looking for?</center></FormLabel>
                         <Grid>
                             <RadioGroup
                                 row
                             >
 
                                 <Grid item>
-                                    <Card className="radios-income"><FormControlLabel value="owned-by-self-spouse" control={<Radio />} label="Owned By Self/Spouse" onChange={handleChange} /></Card>
+                                    <Card className="radios-income"><FormControlLabel value="Honda" control={<Radio />} label="Honda" onChange={handleChange} /></Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card className="radios-income"> <FormControlLabel value="owned-by-parents-siblings" control={<Radio />} label="Owned By Parents/Siblings" onChange={handleChange} /></Card>
+                                    <Card className="radios-income"> <FormControlLabel value="Hyundai" control={<Radio />} label="Hyundai" onChange={handleChange} /></Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card className="radios-income"><FormControlLabel value="rented-with-family-alone" control={<Radio />} label="Rented with Family/Alone" onChange={handleChange} /></Card>
+                                    <Card className="radios-income"><FormControlLabel value="Ford" control={<Radio />} label="Ford" onChange={handleChange} /></Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card className="radios-income"> <FormControlLabel value="paying-guest-hotel" control={<Radio />} label="Paying Guest/Hotel" onChange={handleChange} /></Card>
+                                    <Card className="radios-income"> <FormControlLabel value="Tata" control={<Radio />} label="Tata" onChange={handleChange} /></Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card className="radios-income"><FormControlLabel value="company-provided" control={<Radio />} label="Company Provided" onChange={handleChange} /></Card>
+                                    <Card className="radios-income"><FormControlLabel value="Others" control={<Radio />} label="Others" onChange={handleChange} /></Card>
                                 </Grid>
 
                             </RadioGroup>
@@ -95,11 +91,11 @@ function PersonalLoanFive() {
                             </Grid>
                         </Grid>
                     </FormControl>
-                  
+                    
                 </Card>
             </Box>
             </div>
         </>
     )
 }
-export default PersonalLoanFive;
+export default BrandType;

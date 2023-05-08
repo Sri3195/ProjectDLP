@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "./personalloan.css";
-import vloan from './vehicle-loan.jpg'
-import ProgressBar from "./ProgressBar";
+import "../../loans.css";
+import vloan from "../../utils/vehicle-loan.jpg"
+import ProgressBar from "../../ProgressBar";
 
 
-function VehicleloanOne() {
+function VehicleType() {
     const navigate=useNavigate()
 
     const [vehicleType,setVehicleType]=useState('')
@@ -43,7 +43,7 @@ function VehicleloanOne() {
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
-            navigate("/vehicle-loan-step-two")
+            navigate("/vehicle-loan-residing-city")
         }
         
     }
@@ -84,4 +84,4 @@ function VehicleloanOne() {
         </>
     )
 }
-export default VehicleloanOne;
+export default VehicleType;

@@ -2,13 +2,12 @@ import { Padding } from "@mui/icons-material";
 import { Typography ,Box,TextField, Button,Card,IconButton} from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bgImage from './bg.jpg';
-import ploan from './personal-loan2.jpg';
+import ploan from "../../utils/personal-loan.jpg"
 import  ArrowBack from "@mui/icons-material/ArrowBack";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../../ProgressBar";
 
 
-function PersonalLoanThree(){
+function Company(){
     const navigate=useNavigate('')
     const [company,setCompany]=useState('')
     //localStorage.setItem('company',company)
@@ -49,12 +48,12 @@ function PersonalLoanThree(){
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
-        navigate("/personal-loan-step-four")
+        navigate("/personal-loan-residence-city")
         }
 
     }
     const handleIconClick=()=>{
-        navigate("/personal-loan-step-two")
+        navigate("/personal-loan-bank-account")
     }
     const onlyLetters=(str)=> {
         return /^[A-Za-z\s]*$/.test(str)
@@ -82,4 +81,4 @@ function PersonalLoanThree(){
         </>
     )
 }
-export default PersonalLoanThree;
+export default Company;
