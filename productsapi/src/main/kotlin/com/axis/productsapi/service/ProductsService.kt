@@ -7,27 +7,11 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-@Service
-class ProductsService(
-    @Autowired
-    var productsRepository: ProductsRepository
-) {
 
-    fun saveProduct(product: Products):Mono<Products>{
-        return productsRepository.save(product)
-    }
+interface ProductsService{
+    fun saveProduct(product: Products):Mono<Products>
+    fun getAllProducts():Flux<Products>
+    fun getProductById(id:String):Mono<Products>
 
-    fun getProducts():Flux<Products>{
-        return productsRepository.findAll()
-    }
 
-    fun getProductsById(id:String):Mono<Products>{
-        return productsRepository.findById(id)
-    }
-
-    fun updateProduct(id:String,product: Products):Mono<Products>{
-        return productsRepository.existsById(id).filter { it==true }.flatMap {
-            productsRepository.save(product)
-        }
-    }
 }

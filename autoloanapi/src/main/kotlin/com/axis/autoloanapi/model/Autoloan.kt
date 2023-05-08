@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 data class Autoloan(
     @Id
-    val id:String?,
-    val phNo:String?=null,
+    val id:String,
+    val phNo:Long?=null,
     val vehicleType:String?=null,
     val residingCity:String?=null,
     val brandType:String?=null,

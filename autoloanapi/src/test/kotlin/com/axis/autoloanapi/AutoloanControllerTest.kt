@@ -1,55 +1,67 @@
 package com.axis.autoloanapi
 
+import com.axis.autoloanapi.controller.AutoloanController
 import com.axis.autoloanapi.model.Autoloan
-import com.axis.autoloanapi.repository.AutoloanRepository
-import org.assertj.core.api.Assertions
+import com.axis.autoloanapi.service.AutoloanServiceImpl
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.MediaType
-import org.springframework.test.web.reactive.server.WebTestClient
+import reactor.core.publisher.Mono
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AutoloanControllerTest {
-    @Autowired
-    lateinit var webTestClient: WebTestClient
 
     @Autowired
-    lateinit var autoloanRepository: AutoloanRepository
+    lateinit var autoloanServiceImpl: AutoloanServiceImpl
 
-    @Test
-    fun saveCustomerTest(){
-        val autoloanCustomer=(Autoloan("9618434122","9618434122","New","Hyd","Hyundai","1 week","3 lakshs","3 years", "salaried"))
-        autoloanRepository.save(autoloanCustomer).block()
+    @Autowired
+    lateinit var autoloanController: AutoloanController
 
-        val savedCustomer= webTestClient.post()
-            .uri("/v1/create")
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(autoloanCustomer)
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Autoloan::class.java)
-            .returnResult().responseBody
+    val customer= Autoloan("9492126766",9492126766,"New","mumbai","Hyundai","1 week", "3 lakhs","3 years","Salaried")
 
-        Assertions.assertThat(savedCustomer).isEqualTo(autoloanCustomer)
+    @BeforeEach
+    fun setUp(){
+        autoloanServiceImpl=Mockito.mock(AutoloanServiceImpl::class.java)
+        autoloanController= AutoloanController(autoloanServiceImpl)
 
     }
 
     @Test
-    fun updateCustomerTest(){
-        val autoloanCustomer=(Autoloan("9618434122","9618434122","Used One","Hyd","Hyundai","1 week","3 lakshs","3 years", "salaried"))
-        autoloanRepository.save(autoloanCustomer).block()
+    fun testSaveCustomer(){
+        Mockito.`when`(autoloanServiceImpl.saveCustomer(customer)).thenReturn(Mono.just(customer))
 
-        val savedCustomer= webTestClient.post()
-            .uri("/v1/update?id=9618434122")
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(autoloanCustomer)
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Autoloan::class.java)
-            .returnResult().responseBody
+        val result=autoloanController.saveCustomer(customer).block()
 
-        Assertions.assertThat(savedCustomer).isEqualTo(autoloanCustomer)
+        Mockito.verify(autoloanServiceImpl,Mockito.times(1)).saveCustomer(customer)
+        Assertions.assertNotNull(result)
+        Assertions.assertEquals(customer,result)
+    }
+
+    @Test
+    fun testGetCusometById(){
+        Mockito.`when`(autoloanServiceImpl.getCustomerById("9492126766")).thenReturn(Mono.just(customer))
+
+        val result=autoloanController.getCustomerById("9492126766").block()
+
+        Mockito.verify(autoloanServiceImpl,Mockito.times(1)).getCustomerById("9492126766")
+        Assertions.assertNotNull(result)
+        Assertions.assertEquals(customer,result)
 
     }
+
+    @Test
+    fun testUpdateCustomer(){
+        Mockito.`when`(autoloanController.updateCustomer("9492126766",customer)).thenReturn(Mono.just(customer))
+
+        val result=autoloanController.updateCustomer("9492126766",customer).block()
+
+        Mockito.verify(autoloanServiceImpl,Mockito.times(1)).updateCustomer("9492126766",customer)
+        Assertions.assertNotNull(result)
+        Assertions.assertEquals(customer,result)
+    }
+
+
 }

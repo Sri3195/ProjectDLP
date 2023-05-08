@@ -1,4 +1,4 @@
 package com.axis.personalloanapi
 
-class PersonalloanControllerTest {
+class PersonalloanServiceTest {
 }
