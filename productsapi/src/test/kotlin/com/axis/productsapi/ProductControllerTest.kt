@@ -1,8 +1,11 @@
 package com.axis.productsapi
 
+import com.axis.productsapi.controller.ProductsController
 import com.axis.productsapi.model.Products
 import com.axis.productsapi.repository.ProductsRepository
+import com.axis.productsapi.service.ProductsService
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito
@@ -11,109 +14,81 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 import org.springframework.test.web.reactive.server.returnResult
 import org.springframework.web.reactive.function.BodyInserters
+import org.springframework.web.reactive.function.server.ServerRequest
+import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProductControllerTest {
-    @Autowired
-    lateinit var webTestClient: WebTestClient;
 
     @Autowired
-    lateinit var productsRepository: ProductsRepository;
+    lateinit var productsController: ProductsController
 
-    @Test
-    fun saveProductTest() {
-        val product = (Products("123", "Home Loan", "Get New Home", "CheckEligibility"))
-        // Mockito.`when`(productsRepository.save(product)).thenReturn(Mono.just(product))
-        productsRepository.save(product).block()
+    @Autowired
+    lateinit var productsService: ProductsService
 
-        val savedProduct = webTestClient.post()
-            .uri("/v1/create")
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(product)
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Products::class.java)
-            .returnResult().responseBody
-
-
-
-        Assertions.assertThat(savedProduct).isEqualTo(product)
-
-        //Mockito.verify(productsRepository).save(product)
+    @BeforeEach
+    fun setUp(){
+        productsService=Mockito.mock(ProductsService::class.java)
+        productsController= ProductsController(productsService)
     }
 
     @Test
-    fun getProductById() {
-        val product = (Products("123", "Home Loan", "Get New Home", "CheckEligibility"))
-        // Mockito.`when`(productsRepository.save(product)).thenReturn(Mono.just(product)
+    fun testGetProductsFirstResult(){
 
-        val returnedProduct = webTestClient.get()
-            .uri("/v1/find?id=123")
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Products::class.java)
-            .returnResult().responseBody
+        val products= Products("124","Auto Loan" ,"This helps you to have your own vehicle","Check Eligibility")
+        //val products1=Products("125","Personal Loan","Fulfill your wishes","Check Eligibility")
+        Mockito.`when`(productsService.getAllProducts()).thenReturn(Flux.just(products))
 
-        Assertions.assertThat(returnedProduct).isEqualTo(product)
+        //val request= Mockito.mock(ServerRequest::class.java)
+        //val response=Mockito.mock(ServerResponse::class.java)
+
+        val result=productsController.getProducts().blockFirst()
+        Mockito.verify(productsService,Mockito.times(1)).getAllProducts()
+        org.junit.jupiter.api.Assertions.assertNotNull(result)
+       // org.junit.jupiter.api.Assertions.assertEquals(HttpStatus.OK,result.statusCode())
+        org.junit.jupiter.api.Assertions.assertEquals(products,result)
+
+
     }
-    /*@Test
-    fun getAllProducts(){
-        val product=Flux.just(Products("123","Home Loan","Get New Home","CheckEligibility"),Products("124","Personal Loan","Dream come true","Check Eligibility"))
-        // Mockito.`when`(productsRepository.save(product)).thenReturn(Mono.just(product))
-        //productsRepository.save(product).block()
+    @Test
+    fun testGetProductsLastResult(){
 
-        val returnedProduct=webTestClient.get()
-            .uri("/v1/fetch")
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Products::class.java)
-            .returnResult().responseBody
+        //val products= Products("124","Auto Loan" ,"This helps you to have your own vehicle","Check Eligibility")
+        val products1=Products("125","Personal Loan","Fulfill your wishes","Check Eligibility")
+        Mockito.`when`(productsService.getAllProducts()).thenReturn(Flux.just(products1))
 
-        Assertions.assertThat(returnedProduct).isEqualTo(product)
-    }*/
+        //val request= Mockito.mock(ServerRequest::class.java)
+        //val response=Mockito.mock(ServerResponse::class.java)
+
+        val result=productsController.getProducts().blockLast()
+        Mockito.verify(productsService,Mockito.times(1)).getAllProducts()
+        org.junit.jupiter.api.Assertions.assertNotNull(result)
+        // org.junit.jupiter.api.Assertions.assertEquals(HttpStatus.OK,result.statusCode())
+        org.junit.jupiter.api.Assertions.assertEquals(products1,result)
+
+
+    }
 
     @Test
-    fun updateProductTest() {
-        val product = (Products("123", "Home Loan", "Get New Home", "CheckEligibility"))
-        // Mockito.`when`(productsRepository.save(product)).thenReturn(Mono.just(product))
-        productsRepository.save(product).block()
+    fun testSaveProduct(){
+        val product=Products("126","Education Loan","Dreams come true","Check Eligibility")
 
-        val updatedProduct = webTestClient.put()
-            .uri("/v1/update?id=123")
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(product)
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Products::class.java)
-            .returnResult().responseBody
+        Mockito.`when`(productsService.saveProduct(product)).thenReturn(Mono.just(product))
 
+        val result=productsController.saveProduct(product).block()
 
-
-        Assertions.assertThat(updatedProduct).isEqualTo(product)
-
-        //Mockito.verify(productsRepository).save(product)
+        Mockito.verify(productsService,Mockito.times(1)).saveProduct(product)
+        org.junit.jupiter.api.Assertions.assertNotNull(result)
+        org.junit.jupiter.api.Assertions.assertEquals(product,result)
     }
-    /*@Test
-    fun getProducts() {
-        val product = Flux.just(Products("124", "Auto Loan", "This helps you to have your own vehicle", "Check Eligibility"),Products("125","Personal Loan","Fulfill your wishes","Check Eligibility"))
-        // Mockito.`when`(productsRepository.save(product)).thenReturn(Mono.just(product)
-
-        val returnedProducts = webTestClient.get()
-            .uri("/v1/fetch")
-            .exchange()
-            .expectStatus().isOk
-            .expectBody(Products::class.java)
-            .returnResult().responseBody
-
-        Assertions.assertThat(returnedProducts).isEqualTo(product)
-    */
 }

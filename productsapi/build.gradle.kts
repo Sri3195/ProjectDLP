@@ -25,10 +25,17 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    //implementation("org.spritiamework.kafka:spring-kafka")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.springframework.kafka:spring-kafka-test")
+    // https://mvnrepository.com/artifact/org.mockito/mockito-all
+    //testImplementation("org.mockito:mockito-all:1.10.19")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
 }
 
 dependencyManagement {
