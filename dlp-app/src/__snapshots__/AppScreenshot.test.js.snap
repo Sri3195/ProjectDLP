@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Screenshot Test renders corretly 1`] = `
+<React.Fragment>
+  <ForwardRef(Box)
+    position="fixed"
+    sx={
+      Object {
+        "alignItems": "flex-start",
+        "display": "flex",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <ForwardRef(AppBar)
+      color="inherit"
+      sx={
+        Object {
+          "height": 75,
+        }
+      }
+    >
+      <ForwardRef(Toolbar)
+        disableGutters={true}
+      >
+        <ForwardRef(Typography)
+          data-testid="dlp-title"
+          sx={
+            Object {
+              "ml": 20,
+            }
+          }
+          variant="p"
+        >
+          DigiLend
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          sx={
+            Object {
+              "ml": 30,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="all-products"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            All Products
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          color="black"
+          sx={
+            Object {
+              "ml": 10,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="about-us"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            About Us
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          color="black"
+          sx={
+            Object {
+              "ml": 10,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="contact-us"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            Contact Us
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Button)
+          color="primary"
+          sx={
+            Object {
+              "ml": 50,
+            }
+          }
+          variant="outlined"
+        >
+          SignIn
+        </ForwardRef(Button)>
+      </ForwardRef(Toolbar)>
+    </ForwardRef(AppBar)>
+  </ForwardRef(Box)>
+  <ForwardRef(Box)>
+    <img
+      alt="no-image"
+      src="digi-lend.jpg"
+      style={
+        Object {
+          "height": "400px",
+          "marginLeft": "130px",
+          "margisnTop": "100px",
+          "width": "1250px",
+        }
+      }
+    />
+  </ForwardRef(Box)>
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "ml": 17,
+        "mr": 10,
+        "mt": 3,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      color="black"
+      fontWeight="bold"
+      variant="h6"
+    >
+      PRODUCTS
+    </ForwardRef(Typography)>
+    <ForwardRef(Grid)
+      container={true}
+      spacing={6}
+    />
+  </ForwardRef(Box)>
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "backgroundColor": "#7b7d83",
+        "mt": 15,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      sx={
+        Object {
+          "ml": 50,
+        }
+      }
+      variant="p"
+    >
+      DigiLend
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        All Products
+      </Link>
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      color="black"
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        About Us
+      </Link>
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      color="black"
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        Contact Us
+      </Link>
+    </ForwardRef(Typography)>
+  </ForwardRef(Box)>
+</React.Fragment>
+`;
+
+exports[`App Screenshot Test renders corretly the app component 1`] = `
+<React.Fragment>
+  <ForwardRef(Box)
+    position="fixed"
+    sx={
+      Object {
+        "alignItems": "flex-start",
+        "display": "flex",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <ForwardRef(AppBar)
+      color="inherit"
+      sx={
+        Object {
+          "height": 75,
+        }
+      }
+    >
+      <ForwardRef(Toolbar)
+        disableGutters={true}
+      >
+        <ForwardRef(Typography)
+          data-testid="dlp-title"
+          sx={
+            Object {
+              "ml": 20,
+            }
+          }
+          variant="p"
+        >
+          DigiLend
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          sx={
+            Object {
+              "ml": 30,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="all-products"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            All Products
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          color="black"
+          sx={
+            Object {
+              "ml": 10,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="about-us"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            About Us
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Typography)
+          color="black"
+          sx={
+            Object {
+              "ml": 10,
+            }
+          }
+          variant="p"
+        >
+          <Link
+            data-testid="contact-us"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }
+            to="/"
+          >
+            Contact Us
+          </Link>
+        </ForwardRef(Typography)>
+        <ForwardRef(Button)
+          color="primary"
+          sx={
+            Object {
+              "ml": 50,
+            }
+          }
+          variant="outlined"
+        >
+          SignIn
+        </ForwardRef(Button)>
+      </ForwardRef(Toolbar)>
+    </ForwardRef(AppBar)>
+  </ForwardRef(Box)>
+  <ForwardRef(Box)>
+    <img
+      alt="no-image"
+      src="digi-lend.jpg"
+      style={
+        Object {
+          "height": "400px",
+          "marginLeft": "130px",
+          "margisnTop": "100px",
+          "width": "1250px",
+        }
+      }
+    />
+  </ForwardRef(Box)>
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "ml": 17,
+        "mr": 10,
+        "mt": 3,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      color="black"
+      fontWeight="bold"
+      variant="h6"
+    >
+      PRODUCTS
+    </ForwardRef(Typography)>
+    <ForwardRef(Grid)
+      container={true}
+      spacing={6}
+    />
+  </ForwardRef(Box)>
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "backgroundColor": "#7b7d83",
+        "mt": 15,
+      }
+    }
+  >
+    <ForwardRef(Typography)
+      sx={
+        Object {
+          "ml": 50,
+        }
+      }
+      variant="p"
+    >
+      DigiLend
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        All Products
+      </Link>
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      color="black"
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        About Us
+      </Link>
+    </ForwardRef(Typography)>
+    <ForwardRef(Typography)
+      color="black"
+      sx={
+        Object {
+          "ml": 10,
+        }
+      }
+      variant="p"
+    >
+      <Link
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        Contact Us
+      </Link>
+    </ForwardRef(Typography)>
+  </ForwardRef(Box)>
+</React.Fragment>
+`;

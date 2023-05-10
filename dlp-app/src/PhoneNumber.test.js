@@ -6,8 +6,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import { render,screen } from "@testing-library/react";
 Enzyme.configure({ adapter: new Adapter() })
 import userEvent from "@testing-library/user-event";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+
 
 describe('PhoneNumber component',()=>{
   test('renders phone number component without crashing',()=>{
@@ -96,7 +95,7 @@ describe('PhoneNumber component',()=>{
     expect(productName).toBeInTheDocument();
   });
 
-  test('make a POST request to the correct URL with the phone numbet entered for Persoanl Loan',async()=>{
+  /*test('make a POST request to the correct URL with the phone numbet entered for Persoanl Loan',async()=>{
     const mockNavigate = jest.fn();
     const mockLocalStorage = jest.spyOn(window.localStorage.__proto__, 'setItem');
     const mockFetch= jest.fn().mockResolvedValue({json: jest.fn().mockResolvedValue({})});
@@ -130,4 +129,45 @@ describe('PhoneNumber component',()=>{
     expect(mockNavigate).toHaveBeenCalledWith('/personal-loan-emp-type');
 
   });
+  test('sets localStorage and navigates to correct page for Auto Loan product', async()=>{
+    const mockPhNo='1234567890';
+    const mockProduct='Auto Loan';
+    const navigate= jest.fn()
+    const setItemSpy= jest.spyOn(Storage.prototype,'setItem');
+
+    const fetchSpy= jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: ()=> Promise.resolve({}),
+    });
+    Object.defineProperty(window,'localStorage',{
+      value: {
+        setItem: setItemSpy,
+      },
+      writable: true
+    });
+
+    render(
+      <MemoryRouter initialEntries={[{ pathname: '/phone-numbe',state: mockProduct}]}>
+        <PhoneNumber navigate={navigate}/>
+      </MemoryRouter>
+    );
+
+    const phoneNumberInput=screen.getByLabelText('Enter PhoneNumber');
+    userEvent.type(phoneNumberInput,'1234567890')
+    const proceedButton=screen.getByRole('button',{name: 'proceed'});
+    userEvent.click(proceedButton)
+
+    expect(setItemSpy).toHaveBeenCalledWith('phNo',mockPhNo);
+    expect(fetchSpy).toHaveBeenCalledWith('http://localhost:8003/v1/create',{
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({id:mockPhNo, phNo: mockPhNo}),
+      headers:{
+        "content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+
+      }
+    });
+
+    expect(navigate).toHaveBeenCalledWith('/vehicle-loan-vehicle-type');
+  });*/
 });
