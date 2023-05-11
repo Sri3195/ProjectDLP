@@ -42,19 +42,24 @@ class PersonalloanServiceTest {
 
     }
 
-    @Test
+   @Test
     fun testUpdateCustomer(){
         //val customer=Personalloan("9618434122",9618434122,"salaried","upto 1 lakh","axis bank","axis","hyderabad","owned by parents/siblings","upto 1 lakh","Srilakshmi","bhukyasri3195@gmail.com","female","2001-05-08",521178,"BLEPL3236M")
-        val updatedCustomer= Personalloan("9618434122",9618434122,"salaried","upto 5 lakh","axis bank","axis","hyderabad","owned by parents/siblings","upto 1 lakh","Srilakshmi","bhukyasri3195@gmail.com","female","2001-05-08",521178,"BLEPL3236M")
+        //val updatedCustomer= Personalloan("9618434122",9618434122,"salaried","upto 5 lakh","axis bank","axis","hyderabad","owned by parents/siblings","upto 1 lakh","Srilakshmi","bhukyasri3195@gmail.com","female","2001-05-08",521178,"BLEPL3236M")
 
-        Mockito.`when`(personalloanRepository.save(updatedCustomer)).thenReturn(Mono.just(updatedCustomer))
+       val id="9618434122"
+       Mockito.`when`(personalloanRepository.existsById(id)).thenReturn(Mono.just(true))
 
-        val result=personalloanServiceImpl.updateCustomer("9618434122",updatedCustomer).block()
+        Mockito.`when`(personalloanRepository.save(customer)).thenReturn(Mono.just(customer))
 
-        Mockito.verify(personalloanRepository,Mockito.times(1)).existsById("9618434122")
-        Mockito.verify(personalloanRepository,Mockito.times(1)).save(updatedCustomer)
-        Assertions.assertNotNull(result)
-        Assertions.assertEquals(updatedCustomer,result)
+        val result=personalloanServiceImpl.updateCustomer(id,customer)
+
+       Mockito.verify(personalloanRepository).existsById(id)
+       Mockito.verify(personalloanRepository).save(customer)
+
+       StepVerifier.create(result)
+           .expectNext(customer)
+           .verifyComplete()
     }
 
     @Test
