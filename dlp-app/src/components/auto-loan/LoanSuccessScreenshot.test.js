@@ -2,7 +2,7 @@ import React from "react";
 import {createRenderer} from 'react-test-renderer/shallow'
 
 import { MemoryRouter } from "react-router-dom";
-import LoanSuccess from './LoanSuccess'
+import LoanSuccess from './LoanSuccess';
 //create a test renderer
 const renderer=createRenderer()
 

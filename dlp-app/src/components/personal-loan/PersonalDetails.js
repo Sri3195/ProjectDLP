@@ -23,6 +23,7 @@ function PersonalDetails() {
         id: localStorage.getItem('phNo')
       }
       url.search = new URLSearchParams(params).toString();
+      const url1=new URL('http://localhost:8002/v1/email')
 
     let data={
         id: localStorage.getItem('phNo'),
@@ -82,6 +83,18 @@ function PersonalDetails() {
                 }
             }).then(response => response.json())
             .then(json=>console.log(json))
+            fetch(url1, {
+                method: "POST",
+                mode: "cors",
+                body: JSON.stringify(data),
+                headers: {
+                    "content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                }
+            }).then(response => response.json())
+            .then(json=>console.log(json))
+            
+            
             navigate("/personal-loan-loan-success")
         }
 
