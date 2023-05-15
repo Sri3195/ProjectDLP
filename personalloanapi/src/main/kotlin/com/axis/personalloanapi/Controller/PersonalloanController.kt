@@ -1,6 +1,7 @@
 package com.axis.personalloanapi.Controller
 
 import com.axis.personalloanapi.model.Personalloan
+import com.axis.personalloanapi.service.KafkaProducer
 import com.axis.personalloanapi.service.PersonalloanServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,8 +20,11 @@ class PersonalloanController(
 
     @Autowired
     val personalloanService: PersonalloanServiceImpl
+
 )
 {
+    @Autowired
+    lateinit var kafkaProducer: KafkaProducer
 
     @PostMapping("/create")
     fun saveCustomer(@RequestBody personalloan: Personalloan):Mono<Personalloan>{
@@ -37,6 +41,10 @@ class PersonalloanController(
     fun getCustomerById(@RequestParam id:String):Mono<Personalloan>{
         return personalloanService.getCustomerById(id)
 
+    }
+    @PostMapping("/email")
+    fun getLoanDetails(@RequestBody customer:Personalloan){
+        kafkaProducer.sendloanSactionedMessage(customer);
     }
 
 
